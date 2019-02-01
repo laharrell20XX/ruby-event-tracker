@@ -5,4 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-KeyboardMouseEventStatistic.create(event_type: 'LClick')
+lClickEvent =  KeyboardMouseEventStatistic.find_or_create_by(:event_type => 'LClick')
+spacebarEvent = KeyboardMouseEventStatistic.find_or_create_by(:event_type => 'SpaceBarPress')
