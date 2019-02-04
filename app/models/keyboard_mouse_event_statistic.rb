@@ -1,2 +1,0 @@
-class KeyboardMouseEventStatistic < ApplicationRecord
-end
