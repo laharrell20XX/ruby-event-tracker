@@ -1,0 +1,2 @@
+class StaticEventStatistic < ApplicationRecord
+end
