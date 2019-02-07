@@ -1,23 +1,23 @@
 class PagesController < ApplicationController
 
     def home
-        @KeyboardMouseEventStatistics = StaticEventStatistic.all
-        @LeftClickCount = StaticEvent.where(event_type: 'LClick').count
-        @SpaceBarPressCount = StaticEvent.where(event_type: 'SpaceBarPress').count
+        @StaticEventDisplays = StaticEventStatistic.all
     end
 
-    def page_clicked
-        @LeftClickEventStatistic = StaticEventStatistic.find_by event_type: 'LClick'
-        @LeftClickEventStatistic.update(times_triggered: @LeftClickEventStatistic.times_triggered + 1)
-        @LeftClickEventStatistic.save
+    def button_clicked
+        StaticEventStatistic.update_ev("ButtonClick")
         redirect_to action: :home
-        StaticEvent.create(event_type: "LClick")
+        StaticEvent.create(event_type: "ButtonClick")
     end
     def spacebar_pressed
-        @SpacebarEventStatistic = StaticEventStatistic.find_by event_type: 'SpaceBarPress'
-        @SpacebarEventStatistic.update(times_triggered: @SpacebarEventStatistic.times_triggered + 1)
-        @SpacebarEventStatistic.save
+        StaticEventStatistic.update_ev("SpaceBarPress")
         redirect_to action: :home
         StaticEvent.create(event_type: "SpaceBarPress")
+    end
+    def daily_stats
+        # t = Time.now.getlocal.strftime("%F")
+        t = Time.now.midnight
+        @SpaceBarEventCount = StaticEvent.daily_events(t, "SpaceBarPress").count
+        @ButtonClickEventCount = StaticEvent.daily_events(t, "ButtonClick").count
     end
 end
