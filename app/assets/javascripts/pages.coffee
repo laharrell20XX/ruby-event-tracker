@@ -5,10 +5,10 @@ registered_session_clicks = 0
 registered_keys_pressed = 0
 
 increasePageClickCount = do ->
-    $(document).click (event) =>
-        lClickCount = Number ($("#left_click_count").text())
-        document.getElementById("left_click_count").innerText = lClickCount + 1
-        $.ajax({url: "/page-clicked"}).done () =>
+    $(".button_clicked_stat_wrapper button").click (event) =>
+        lClickCount = Number ($("#button_clicked_count").text())
+        document.getElementById("button_clicked_count").innerText = lClickCount + 1
+        $.ajax({url: "/button-clicked"}).done () =>
             registered_session_clicks += 1
 
 increasePageSpacebarCount = do ->
@@ -17,6 +17,7 @@ increasePageSpacebarCount = do ->
     ###
     $(document).on "keyup", (event) =>
         if event.which == 32
+            event.preventDefault()
             spacebarPressed = Number ($("#spacebar_pressed_count").text())
             document.getElementById("spacebar_pressed_count").innerText = spacebarPressed + 1
             $.ajax({url: "/space-pressed"}).done () =>
