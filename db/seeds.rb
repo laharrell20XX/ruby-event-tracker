@@ -5,5 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-lClickEvent =  StaticEventStatistic.find_or_create_by(:event_type => 'LClick')
-spacebarEvent = StaticEventStatistic.find_or_create_by(:event_type => 'SpaceBarPress')
+button_click_event =  StaticEventStatistic.find_or_create_by(:event_type => 'ButtonClick')
+spacebar_event = StaticEventStatistic.find_or_create_by(:event_type => 'SpaceBarPress')
