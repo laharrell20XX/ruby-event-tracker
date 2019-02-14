@@ -17,6 +17,28 @@
             <%= @statistic.times_triggered %></span> times while on this page!</p>
 </div>
 <% end %>
+<% if @statistic.event_type == "BoxRecolored" %>
+<div class="color_changer_wrapper">
+    <div id="color_changing_box" style="background-color: <%= @statistic.color %>"></div>
+    <div id="color_changer_buttons_wrapper">
+        <div class="color_changer blue" style="background-color: blue"></div>
+        <div class="color_changer red" style="background-color: red"></div>
+        <div class="color_changer green" style="background-color: green"></div>
+        <div class="color_changer black" style="background-color: black"></div>
+    </div>
+    <p>Change color to <span>
+            <div id="display_example_color" style="background-color: <%= @statistic.color %>"></div>
+        </span>
+    </p>
+    <%= button_to "Change Color!", {action: "box_color_changed", remote: true}, params: {"color" => @statistic.color},
+    :id=> "submit_color_change"%>
+    <!-- <form id="submit_color_change" action="box-color-changed" method="POST">
+        <input hidden="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
+        <input hidden="hidden" name="color" value="<%= @statistic.color %>">
+        <button>Change Color!</button>
+    </form> -->
+</div>
+<% end %>
 
 <% end %>
 
