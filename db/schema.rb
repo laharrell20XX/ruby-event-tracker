@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190202015817) do
+ActiveRecord::Schema.define(version: 20190207035356) do
 
   create_table "static_event_statistics", force: :cascade do |t|
     t.string "event_type"
     t.integer "times_triggered", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "color", default: ""
   end
 
   create_table "static_events", force: :cascade do |t|
