@@ -4,14 +4,18 @@
 registered_session_clicks = 0
 registered_keys_pressed = 0
 
-ses_start_box_color = document.getElementById("color_changing_box").style.backgroundColor
+
+if document.getElementById("color_changing_box") != null
+    ses_start_box_color = $("#color_changing_box").attr('style').backgroundColor
+
 
 increasePageClickCount = do ->
-    $(".button_clicked_stat_wrapper button").click (event) =>
-        $.ajax({url: "/button-clicked"}).done () =>
-            lClickCount = Number ($("#button_clicked_count").text())
-            document.getElementById("button_clicked_count").innerText = lClickCount + 1
-            registered_session_clicks += 1
+    $(document).on "turbolinks:load", (event) =>
+        $(".button_clicked_stat_wrapper button").on "click", (event) =>
+            $.ajax({url: "/button-clicked"}).done () =>
+                lClickCount = Number ($("#button_clicked_count").text())
+                document.getElementById("button_clicked_count").innerText = lClickCount + 1
+                registered_session_clicks += 1
 
 increasePageSpacebarCount = do ->
     ###
@@ -35,8 +39,8 @@ setBoxColor = (button) ->
             colorToChange.value = event.target.style.backgroundColor
 
         
-
-setBoxColor button for button in $(".color_changer")
+$(document).on "turbolinks:load", (event) =>
+    setBoxColor button for button in $(".color_changer")
 
 ###
 changeBoxColor = do ->
