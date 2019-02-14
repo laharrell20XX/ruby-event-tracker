@@ -19,5 +19,11 @@ class PagesController < ApplicationController
         t = Time.now.midnight
         @SpaceBarEventCount = StaticEvent.daily_events(t, "SpaceBarPress").count
         @ButtonClickEventCount = StaticEvent.daily_events(t, "ButtonClick").count
+        @BoxRecolorEventCount = StaticEvent.daily_events(t, "BoxRecolored").count
+    end
+    def box_color_changed
+        StaticEventStatistic.update_color_ev("BoxRecolored", params[:color])
+        redirect_to action: :home
+        StaticEvent.create(event_type: "BoxRecolored")
     end
 end
