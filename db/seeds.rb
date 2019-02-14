@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 button_click_event =  StaticEventStatistic.find_or_create_by(:event_type => 'ButtonClick')
 spacebar_event = StaticEventStatistic.find_or_create_by(:event_type => 'SpaceBarPress')
+box_color_change_event = StaticEventStatistic.find_or_create_by(:event_type => 'BoxRecolored', :color => "black")
