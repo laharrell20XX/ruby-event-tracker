@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'home' => 'pages#home'
+  root 'pages#home'
   get 'button-clicked' => 'pages#button_clicked'
   get 'space-pressed' => 'pages#spacebar_pressed'
   get 'daily-statistics' => 'pages#daily_stats'
